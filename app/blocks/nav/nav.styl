@@ -1,0 +1,85 @@
+.fullpage-nav
+	position fixed
+	z-index 3
+	top 90px
+	right 44px
+	tr(all .3s ease)
+	&__list
+		tr(all .3s ease)
+	&__item
+		position relative
+		margin-bottom 10px
+		font-family $h
+		font-size 14px
+		line-height 1.4
+		text-align right
+		&.active
+			.fullpage-nav__link
+				font-family $hB
+				tr(all .3s ease)
+			.fullpage-nav__dot
+				&:after
+					top 2px
+					right 2px
+					z-index 1
+					width 10px
+					height 10px
+					border 1px solid #ffffff
+					background-color #00a8ec
+	&__link
+		position relative
+		padding-right 34px
+		display inline-block
+		vertical-align middle
+		color #ffffff
+		text-decoration none
+		tr(all .3s ease)
+		span
+			position relative
+			top -1px
+			opacity 0
+			visibility hidden
+			tr(all .3s ease)
+	&__dot
+		position absolute
+		top 0
+		right 0
+		width 16px
+		height 16px
+		background-color #ffffff
+		border-radius 50%
+		tr(all .3s ease)
+		&:after
+			position absolute
+			z-index 1
+			top 2px
+			right 2px
+			content ''
+			width 10px
+			height 10px
+			background-color #fff
+			border 1px solid #ffffff
+			border-radius 50%
+			tr(all .3s ease)
+
+	&__dot
+		&:hover
+			tr(all .3s ease)
+			&:after
+				background-color #00a8ec
+.fullpage-nav__list
+	&:hover
+		span
+			opacity 1
+			visibility visible
+.fp-viewing-awardsSection,
+.fp-viewing-reviewsSection,
+.fp-viewing-pressSection,
+.fp-viewing-certificatesSection
+	.fullpage-nav__link
+		color #999999
+	.fullpage-nav__dot
+		background-color #737373
+		&:after
+			background-color #737373
+			border 1px solid #737373

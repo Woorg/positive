@@ -1,0 +1,95 @@
+.about
+	display block
+	background #253eaa url('../images/general/about-bg.jpg') 0 0 repeat
+	background-size 100% 100%
+	color #fff
+	&__in
+		position relative
+		@extends .in
+		// display table
+	&__w
+		// display table-cell
+		// vertical-align middle
+		position absolute
+		top 50%
+		left 0
+		// margin-top 5px
+		width 560px
+		transform translateY( calc(-50% + 0px ))
+	&__text
+		margin-bottom 40px
+		font-family $h
+		font-size 24px
+		line-height 1.166666667
+		a
+			color #fff
+			text-decoration underline
+			&:hover
+				text-decoration none
+	&__button
+		@extends .button
+		color #fff
+		tr(all .3s ease)
+		&:hover
+			background #fff
+			color #233eb1
+
+	&__next
+		position absolute
+		left 50%
+		bottom 72px
+		display block
+		retinaSprite($mouse_icon_group)
+		transform translateX( calc(-50% + -3px) )
+		text-indent -9999px
+		&:before,
+		&:after
+			position absolute
+			bottom -4px
+			left 50%
+			content ''
+			margin-left -2px
+			retinaSprite($mouse_arrow_group)
+			// transform translateX(-50%)
+		&:before
+			animation-duration 1s
+			animation-iteration-count infinite
+			animation-name scrollDown
+		&:after
+			left 50%
+			bottom -8px
+			retinaSprite($mouse_arrow_group)
+			// transform translateX(-50%)
+			animation-duration 1s
+			animation-iteration-count infinite
+			animation-name scrollDownSecond
+	&__next_animated
+		animation-duration 1s
+		animation-iteration-count 1
+		animation-name fade
+
+@keyframes fade
+	from
+		opacity 0
+
+	to
+		opacity 1
+
+@keyframes scrollDown
+	0%
+		opacity 1
+		transform translateY(0)
+	100%
+		opacity 0
+		transform translateY(5px)
+
+@keyframes scrollDownSecond
+	0%
+		opacity 1
+		transform translateY(0)
+	100%
+		opacity 0
+		transform translateY(5px)
+
+.fadeIn
+	animation fadeIn

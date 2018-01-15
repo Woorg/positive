@@ -1,0 +1,81 @@
+.slider
+	&__list
+		position relative
+		padding-top 10px
+		padding-bottom 30px
+		font-size 0
+		white-space nowrap
+		overflow hidden
+		&:after,
+		&:before
+			position absolute
+			z-index 1
+			top 0
+			bottom 0
+			content ''
+			width 1px
+			height 100%
+			background #8e8e8e
+		&:after
+			right 0
+		&:before
+			left 0
+	&__item
+		margin-right 8px
+		width 18%
+		display inline-block
+		vertical-align baseline
+		&:last-child
+			margin-right 0
+	&__link
+		display block
+		text-decoration none
+		font-size 12px
+		color #5555dc
+	&__image
+		margin-bottom 5px
+		img
+			max-width 100%
+			height auto
+	&__item-title
+		width 100px
+		font-family $d
+		font-size 12px
+		line-height 1.083333333
+		color #5555dc
+		white-space normal
+.slider__link
+	.slider__item-title
+		text-decoration underline
+	&:hover
+		.slider__item-title
+			text-decoration none
+.slider_awards
+	.slider__item
+		margin-right 15px
+		width 152px
+	.slider__image
+		margin-bottom 0
+.slider_reviews
+	.slider__item
+		// margin-right 10px
+		margin-right 23px
+		// width 14.5%
+		width 140px
+		vertical-align top
+	.slider__item-title
+		width 160px
+	.slider__image
+		min-height 158px
+
+.slider_articles
+	margin-right -60px
+	// padding-left 40px
+	.slider__list
+		&:after,
+		&:before
+			display none
+	.slider__item
+		margin-right 60px
+		// width 33.3%
+		width 260px
