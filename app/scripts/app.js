@@ -91,9 +91,9 @@ import 'wheelzoom';
 				} else {
 					$('.fancybox-slide--current .fancybox-image-wrap ').append(slideCurr.parent('.fancybox-stage').next().html());
 				}
-
-				console.log($('.fancybox-image-wrap .fancybox-caption').length);
-
+				$('.fancybox-image').click(function () {
+					$(this).toggleClass('fancybox-image_scale');
+				});
 				if (el) {
 					wheelzoom(el);
 					el.classList.add('wheelzoomed');
@@ -101,9 +101,6 @@ import 'wheelzoom';
 
 				}
 
-				// $('.fancybox-slide--current .fancybox-image').click(function () {
-				// 	$(this).toggleClass('fancybox-image_scale');
-				// });
 				console.log('afterShow fired');
 
 
@@ -114,18 +111,11 @@ import 'wheelzoom';
 			loop: true,
 			margin : [ 44, 0, 90, 0 ],
 			buttons : [
-				// 'slideShow',
-				// 'fullScreen',
-				// 'thumbs',
-				// 'share',
-				//'download',
-				//'zoom',
 				'close'
 			],
 			touch : false,
 			animationEffect : 'fade',
 			animationDuration : 300,
-			// clickSlide: 'zoom',
 			modal : false,
 			wheel : false,
 			onInit : function( instance ) {
@@ -154,15 +144,14 @@ import 'wheelzoom';
 					$('.fancybox-slide--current .fancybox-image-wrap ').append(slideCurr.parent('.fancybox-stage').next().html());
 				}
 
+				$('.fancybox-image').click(function () {
+					$(this).toggleClass('fancybox-image_scale');
+				});
 				if (el) {
 					wheelzoom(el);
 					el.classList.add('wheelzoomed');
-
 				}
 
-				// $('.fancybox-slide--current .fancybox-image').click(function () {
-				// 	$(this).toggleClass('fancybox-image_scale');
-				// });
 				console.log('afterShow fired');
 			}
 		});
@@ -171,18 +160,11 @@ import 'wheelzoom';
 			loop: true,
 			margin : [ 44, 0, 90, 0 ],
 			buttons : [
-				// 'slideShow',
-				// 'fullScreen',
-				// 'thumbs',
-				// 'share',
-				//'download',
-				//'zoom',
 				'close'
 			],
 			touch : false,
 			animationEffect : 'fade',
 			animationDuration : 300,
-			// clickSlide: 'zoom',
 			modal : false,
 			wheel : false,
 			onInit : function( instance ) {
@@ -210,15 +192,15 @@ import 'wheelzoom';
 				} else {
 					$('.fancybox-slide--current .fancybox-image-wrap ').append(slideCurr.parent('.fancybox-stage').next().html());
 				}
+				$('.fancybox-image').click(function () {
+					$(this).toggleClass('fancybox-image_scale');
+				});
 
 				if (el) {
 					wheelzoom(el);
 					el.classList.add('wheelzoomed');
 
 				}
-				// $('.fancybox-slide--current .fancybox-image').click(function () {
-				// 	$(this).toggleClass('fancybox-image_scale');
-				// });
 				console.log('afterShow fired');
 			}
 		});
@@ -227,18 +209,11 @@ import 'wheelzoom';
 			loop: true,
 			margin : [ 44, 0, 90, 0 ],
 			buttons : [
-				// 'slideShow',
-				// 'fullScreen',
-				// 'thumbs',
-				// 'share',
-				//'download',
-				//'zoom',
 				'close'
 			],
 			touch : false,
 			animationEffect : 'fade',
 			animationDuration : 300,
-			// clickSlide: 'zoom',
 			modal : false,
 			wheel : false,
 			onInit : function( instance ) {
@@ -259,14 +234,18 @@ import 'wheelzoom';
 			afterShow : function( instance, current ) {
 				var el = document.querySelector('.fancybox-slide--current .fancybox-image:not(.wheelzoomed)');
 				var slideCurr = $('.fancybox-slide--current');
-				var slideCaption = slideCurr.parent('.fancybox-stage').next().children('.fancybox-caption')[0].text();
+				var slideCaption = slideCurr.parent('.fancybox-stage').next().children('.fancybox-caption').text();
 				var sliderCaptionQuant = $('.fancybox-image-wrap .fancybox-caption').length;
 
 				if (sliderCaptionQuant > 1) {
 
 				} else {
 					$('.fancybox-slide--current .fancybox-image-wrap ').append(slideCurr.parent('.fancybox-stage').next().html());
+
 				}
+				$('.fancybox-image').click(function () {
+					$(this).toggleClass('fancybox-image_scale');
+				});
 
 				if (el) {
 					wheelzoom(el);
@@ -278,16 +257,6 @@ import 'wheelzoom';
 
 		wheelzoom(document.querySelectorAll('.fancybox-image'), {zoom:0.01});
 
-		// wheelzoom(document.querySelectorAll('.mfp-img'), { maxZoom: 1, zoom: 0.02 });
-
-		// $('.fancybox-image').CloudZoom();
-
-		// $(".fancybox-image").elevateZoom({
-		// 	zoomType: "inner",
-		// 	cursor: "zoom"
-		// });
-
 	});
-
 
 })(jQuery);
