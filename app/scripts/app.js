@@ -1,13 +1,10 @@
 import svg4everybody from 'svg4everybody';
-// import $ from 'jquery';
-// import mousewheel from 'jquery-mousewheel';
+import $ from 'jquery';
 import 'fullpage.js';
+import 'fullpage.js/dist/jquery.fullpage.extensions.min.js';
 import 'magnific-popup';
-// import 'photoswipe';
 import '@fancyapps/fancybox';
-// import elevateZoom from '@zeitiger/elevatezoom';
 import 'wheelzoom';
-// import 'easyzoom';
 
 (function ($) {
 
@@ -33,8 +30,8 @@ import 'wheelzoom';
 
 		// header
 
-		let $header = $('.header');
-		let $headerHeight = $('.header').outerHeight();
+		const $header = $('.header');
+		const $headerHeight = $('.header').outerHeight();
 
 		$('.page').css('padding-top', $headerHeight);
 
@@ -44,218 +41,173 @@ import 'wheelzoom';
 			$('.page').css('padding-top', $headerHeight);
 		});
 
-		let $nextButton = $('.about__next');
+		const $nextButton = $('.about__next');
 
 		$nextButton.addClass('about__next_animated');
 
+		$nextButton.click(function (e) {
+			e.preventDefault();
+		});
 
-		$('.fullpage').fullpage({
+		const $fP = $('.fullpage');
+
+		$fP.fullpage({
 			anchors: ['aboutSection', 'awardsSection', 'reviewsSection', 'pressSection', 'certificatesSection'],
 			menu: '.fullpage-nav__list',
-			normalScrollElements: '.fancybox-image, .mfp-img'
+			normalScrollElements: '.fancybox-image',
+			loopBottom: false,
+			loopTop: false,
+			fadingEffect: false,
+			recordHistory: false,
+			fixedElements: '.header',
+			lazyLoading: false,
+			interlockedSlides: true
+			// continuousVertical: true
 		});
 
-		$('[data-fancybox="awards"]').fancybox({
+		const $fPress = $('[data-fancybox="press"]');
+
+		$fPress.fancybox({
 			loop: true,
-			margin : [ 44, 0, 90, 0 ],
 			buttons : [
 				'close'
 			],
-			touch : false,
-			animationEffect : 'fade',
-			animationDuration : 300,
-			modal : false,
-			wheel : true,
-			onInit : function( instance ) {
-
-				// Make zoom icon clickable
-				instance.$refs.toolbar.find('.fancybox-zoom').on('click', function() {
-
-				 if ( instance.isScaledDown() ) {
-				   instance.scaleToActual();
-
-				 } else {
-				   instance.scaleToFit();
-				 }
-
-				});
-			},
-			afterShow : function( instance, current ) {
-				var el = document.querySelector('.fancybox-slide--current .fancybox-image:not(.wheelzoomed)');
-				var slideCurr = $('.fancybox-slide--current');
-				var slideCaption = slideCurr.parent('.fancybox-stage').next().children('.fancybox-caption').text();
-				var sliderCaptionQuant = $('.fancybox-image-wrap .fancybox-caption').length;
-
-				if (sliderCaptionQuant > 1) {
-
-				} else {
-					$('.fancybox-slide--current .fancybox-image-wrap ').append(slideCurr.parent('.fancybox-stage').next().html());
-				}
-				$('.fancybox-image').click(function () {
-					$(this).toggleClass('fancybox-image_scale');
-				});
-				if (el) {
-					wheelzoom(el);
-					el.classList.add('wheelzoomed');
-
-
-				}
-
-				console.log('afterShow fired');
-
-
-			}
-		});
-
-		$('[data-fancybox="reviews"]').fancybox({
-			loop: true,
-			margin : [ 44, 0, 90, 0 ],
-			buttons : [
-				'close'
-			],
-			touch : false,
+			touch : true,
 			animationEffect : 'fade',
 			animationDuration : 300,
 			modal : false,
 			wheel : false,
-			onInit : function( instance ) {
-
-				// Make zoom icon clickable
-				instance.$refs.toolbar.find('.fancybox-zoom').on('click', function() {
-
-				 if ( instance.isScaledDown() ) {
-				   instance.scaleToActual();
-
-				 } else {
-				   instance.scaleToFit();
-				 }
-
-				});
-			},
 			afterShow : function( instance, current ) {
 				var el = document.querySelector('.fancybox-slide--current .fancybox-image:not(.wheelzoomed)');
 				var slideCurr = $('.fancybox-slide--current');
 				var slideCaption = slideCurr.parent('.fancybox-stage').next().children('.fancybox-caption').text();
 				var sliderCaptionQuant = $('.fancybox-image-wrap .fancybox-caption').length;
+				var $sliderImageWrap = $('.fancybox-slide--current .fancybox-image-wrap');
+				var $sImageWrapImage = $('.fancybox-slide--current .fancybox-image-wrap .fancybox-image');
 
 				if (sliderCaptionQuant > 1) {
-
 				} else {
-					$('.fancybox-slide--current .fancybox-image-wrap ').append(slideCurr.parent('.fancybox-stage').next().html());
+					$sliderImageWrap.append(slideCurr.parent('.fancybox-stage').next().html());
+					$sImageWrapImage.click(function () {
+						$(this).toggleClass('fancybox-image_scale');
+					});
 				}
-
-				$('.fancybox-image').click(function () {
-					$(this).toggleClass('fancybox-image_scale');
-				});
 				if (el) {
-					wheelzoom(el);
+					wheelzoom(el, { zoom: 0.05, maxZoom: 2 });
 					el.classList.add('wheelzoomed');
 				}
-
-				console.log('afterShow fired');
 			}
 		});
 
-		$('[data-fancybox="slider"]').fancybox({
+		const $fCert = $('[data-fancybox="cartificates"]');
+
+		$fCert.fancybox({
+			loop: true,
+			buttons : [
+				'close'
+			],
+			touch : true,
+			animationEffect : 'fade',
+			animationDuration : 300,
+			modal : false,
+			wheel : false,
+			afterShow : function( instance, current ) {
+				var el = document.querySelector('.fancybox-slide--current .fancybox-image:not(.wheelzoomed)');
+				var slideCurr = $('.fancybox-slide--current');
+				var slideCaption = slideCurr.parent('.fancybox-stage').next().children('.fancybox-caption').text();
+				var sliderCaptionQuant = $('.fancybox-image-wrap .fancybox-caption').length;
+				var $sliderImageWrap = $('.fancybox-slide--current .fancybox-image-wrap');
+				var $sImageWrapImage = $('.fancybox-slide--current .fancybox-image-wrap .fancybox-image');
+
+				if (sliderCaptionQuant > 1) {
+				} else {
+					$sliderImageWrap.append(slideCurr.parent('.fancybox-stage').next().html());
+					$sImageWrapImage.click(function () {
+						$(this).toggleClass('fancybox-image_scale');
+					});
+				}
+				if (el) {
+					wheelzoom(el, { zoom: 0.05, maxZoom: 2 });
+					el.classList.add('wheelzoomed');
+				}
+			}
+		});
+
+
+
+		const $fAwards = $('[data-fancybox="awards"]');
+
+		$fAwards.fancybox({
 			loop: true,
 			margin : [ 44, 0, 90, 0 ],
 			buttons : [
 				'close'
 			],
-			touch : false,
+			touch : true,
 			animationEffect : 'fade',
 			animationDuration : 300,
 			modal : false,
 			wheel : false,
-			onInit : function( instance ) {
-
-				// Make zoom icon clickable
-				instance.$refs.toolbar.find('.fancybox-zoom').on('click', function() {
-
-				 if ( instance.isScaledDown() ) {
-				   instance.scaleToActual();
-
-				 } else {
-				   instance.scaleToFit();
-				 }
-
-				});
-			},
 			afterShow : function( instance, current ) {
 				var el = document.querySelector('.fancybox-slide--current .fancybox-image:not(.wheelzoomed)');
 				var slideCurr = $('.fancybox-slide--current');
 				var slideCaption = slideCurr.parent('.fancybox-stage').next().children('.fancybox-caption').text();
 				var sliderCaptionQuant = $('.fancybox-image-wrap .fancybox-caption').length;
+				var $sliderImageWrap = $('.fancybox-slide--current .fancybox-image-wrap');
+				var $sImageWrapImage = $('.fancybox-slide--current .fancybox-image-wrap .fancybox-image');
 
 				if (sliderCaptionQuant > 1) {
-
 				} else {
-					$('.fancybox-slide--current .fancybox-image-wrap ').append(slideCurr.parent('.fancybox-stage').next().html());
+					$sliderImageWrap.append(slideCurr.parent('.fancybox-stage').next().html());
+					$sImageWrapImage.click(function () {
+						$(this).toggleClass('fancybox-image_scale');
+					});
 				}
-				$('.fancybox-image').click(function () {
-					$(this).toggleClass('fancybox-image_scale');
-				});
-
 				if (el) {
-					wheelzoom(el);
+					wheelzoom(el, { zoom: 0.05, maxZoom: 2 });
 					el.classList.add('wheelzoomed');
-
 				}
-				console.log('afterShow fired');
 			}
 		});
 
-		$('[data-fancybox="cartificates"]').fancybox({
+		const $fReview = $('[data-fancybox="reviews"]');
+
+		$fReview.fancybox({
 			loop: true,
 			margin : [ 44, 0, 90, 0 ],
 			buttons : [
 				'close'
 			],
-			touch : false,
+			touch : true,
 			animationEffect : 'fade',
 			animationDuration : 300,
 			modal : false,
 			wheel : false,
-			onInit : function( instance ) {
-
-				// Make zoom icon clickable
-				instance.$refs.toolbar.find('.fancybox-zoom').on('click', function() {
-
-				 if ( instance.isScaledDown() ) {
-				   instance.scaleToActual();
-
-				 } else {
-				   instance.scaleToFit();
-				 }
-
-				});
-			},
-
 			afterShow : function( instance, current ) {
 				var el = document.querySelector('.fancybox-slide--current .fancybox-image:not(.wheelzoomed)');
 				var slideCurr = $('.fancybox-slide--current');
 				var slideCaption = slideCurr.parent('.fancybox-stage').next().children('.fancybox-caption').text();
 				var sliderCaptionQuant = $('.fancybox-image-wrap .fancybox-caption').length;
-
+				var $sliderImageWrap = $('.fancybox-slide--current .fancybox-image-wrap');
+				var $sImageWrapImage = $('.fancybox-slide--current .fancybox-image-wrap .fancybox-image');
 				if (sliderCaptionQuant > 1) {
 
 				} else {
-					$('.fancybox-slide--current .fancybox-image-wrap ').append(slideCurr.parent('.fancybox-stage').next().html());
-
+					$sliderImageWrap.append(slideCurr.parent('.fancybox-stage').next().html());
+					$sImageWrapImage.click(function () {
+						$(this).toggleClass('fancybox-image_scale');
+					});
 				}
-				$('.fancybox-image').click(function () {
-					$(this).toggleClass('fancybox-image_scale');
-				});
 
 				if (el) {
-					wheelzoom(el);
+					wheelzoom(el, { zoom: 0.05, maxZoom: 2 });
 					el.classList.add('wheelzoomed');
-
 				}
 			}
 		});
 
-		wheelzoom(document.querySelectorAll('.fancybox-image'), {zoom:0.01});
+
+
 
 	});
 
