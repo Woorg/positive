@@ -1,5 +1,5 @@
 import svg4everybody from 'svg4everybody';
-import $ from 'jquery';
+// import $ from 'jquery';
 import 'fullpage.js';
 import 'fullpage.js/dist/jquery.fullpage.extensions.min.js';
 import 'magnific-popup';
